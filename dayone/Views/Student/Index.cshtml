@@ -1,0 +1,70 @@
+﻿@model IEnumerable<dayone.Models.Student>
+
+
+<p class="ex1">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover" id="employeeTable">
+    <thead>
+    <tr class="table-primary">
+        <th scope="row">
+            @Html.DisplayNameFor(model => model.Rno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marks)
+        </th>
+        <th></th>
+    </tr>
+        </thead>
+    <tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr class="table-primary">
+            <td>
+                @Html.DisplayFor(modelItem => item.Rno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Rno })
+                @Html.ActionLink("Details", "Details", new { id = item.Rno })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Rno })
+            </td>
+        </tr>
+    }
+        </tbody>
+
+</table>
+
+<style>
+    p.ex1 {    
+        padding: 20px;
+    }
+
+</style>
+
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        function activatejQueryTable() {
+            $("#employeeTable").DataTable();
+        }
+
+        $(function () {
+            activatejQueryTable();
+        });
+
+    </script>
+    }
